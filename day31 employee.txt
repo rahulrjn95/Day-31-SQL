@@ -1,0 +1,140 @@
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| addressbookservice |
+| information_schema |
+| mysql              |
+| performance_schema |
+| phones             |
++--------------------+
+5 rows in set (0.08 sec)
+
+mysql> create database  Payroll_Service
+    -> ;
+Query OK, 1 row affected (0.10 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| addressbookservice |
+| information_schema |
+| mysql              |
+| payroll_service    |
+| performance_schema |
+| phones             |
++--------------------+
+6 rows in set (0.00 sec)
+
+mysql> use payroll_service;
+Database changed
+mysql> create table employee_payroll(
+    -> ID int,
+    -> Name varchar(35),
+    -> salary varchar(35),
+    -> StartDate varchar(35),
+    -> Grade varchar(35),
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 7
+mysql> show databases;^C
+mysql> create table employee_payroll(
+    -> ID int,
+    -> Name varchar(35),
+    -> salary varchar(35),
+    -> StartDate varchar(35),
+    -> Grade varchar(35)
+    -> );
+Query OK, 0 rows affected (0.14 sec)
+
+mysql> select * from employee_payroll;
+Empty set (0.00 sec)
+
+mysql> insert into employee_payroll values(1,'Shail','89000','10-01-1990','B'
+    -> ^C
+mysql> insert into employee_payroll values(1,'Shail','89000','10-01-1990','B'),(2,'Suresh','70000','03-04-1993','C'),(3,'Shivam','120000','06-08-2007','B'),(4,'Jitu','250000','02-09-2018','A');
+Query OK, 4 rows affected (0.05 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee_payroll;
++------+--------+--------+------------+-------+
+| ID   | Name   | salary | StartDate  | Grade |
++------+--------+--------+------------+-------+
+|    1 | Shail  | 89000  | 10-01-1990 | B     |
+|    2 | Suresh | 70000  | 03-04-1993 | C     |
+|    3 | Shivam | 120000 | 06-08-2007 | B     |
+|    4 | Jitu   | 250000 | 02-09-2018 | A     |
++------+--------+--------+------------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select salary from employee_payroll where name = 'Jitu';
++--------+
+| salary |
++--------+
+| 250000 |
++--------+
+1 row in set (0.00 sec)
+
+mysql> update employee_payroll set salary = '90000' where name = 'Suresh';
+Query OK, 1 row affected (0.08 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee_payroll;
++------+--------+--------+------------+-------+
+| ID   | Name   | salary | StartDate  | Grade |
++------+--------+--------+------------+-------+
+|    1 | Shail  | 89000  | 10-01-1990 | B     |
+|    2 | Suresh | 90000  | 03-04-1993 | C     |
+|    3 | Shivam | 120000 | 06-08-2007 | B     |
+|    4 | Jitu   | 250000 | 02-09-2018 | A     |
++------+--------+--------+------------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select sum(salary) from employee_payroll;
++-------------+
+| sum(salary) |
++-------------+
+|      549000 |
++-------------+
+1 row in set (0.06 sec)
+
+mysql> select avg(salary) from employee_payroll;
++-------------+
+| avg(salary) |
++-------------+
+|      137250 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select min(salary) from employee_payroll;
++-------------+
+| min(salary) |
++-------------+
+| 120000      |
++-------------+
+1 row in set (0.05 sec)
+
+mysql> select max(salary) from employee_payroll;
++-------------+
+| max(salary) |
++-------------+
+| 90000       |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select MAX(salary) from employee_payroll;
++-------------+
+| MAX(salary) |
++-------------+
+| 90000       |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> SELEct count(name) from employee_payroll;
++-------------+
+| count(name) |
++-------------+
+|           4 |
++-------------+
+1 row in set (0.00 sec)
